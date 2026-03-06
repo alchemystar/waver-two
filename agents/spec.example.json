@@ -1,0 +1,21 @@
+{
+  "question": "分析 /api/order/create 调用链路",
+  "budget": {
+    "max_files": 8,
+    "max_commands": 12
+  },
+  "phase_a_commands": [
+    "rg \"order|create|router|handler\" src",
+    "rg \"/api/order/create\" src"
+  ],
+  "hypotheses": [
+    {
+      "name": "Route handler calls order service",
+      "commands": [
+        "rg \"def .*create.*order|function .*create.*order\" src",
+        "rg \"orderService|OrderService\" src",
+        "rg \"router|route|app\" src"
+      ]
+    }
+  ]
+}
